@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <script>
+
+        function appendNumber(number) { // append = anhängen
+            document.getElementById('resultArea').innerHTML += number;
+        }
+
+        function calculateResult() {
+            let container = document.getElementById('resultArea');
+            let result = eval(container.innerHTML);  // eval berechnet bzw. führt aus
+            container.innerHTML = result;
+
+        }
+
+        function deleteLastNumber(number) {
+            // document.getElementById('resultArea').innerHTML -= number;   // FUNKTIONIERT NICHT
+            let container = document.getElementById('resultArea');
+            if(container.innerHTML.endsWith(' ')){
+                container.innerHTML = container.innerHTML.slice(0,-3);  // -3 wegen leerzeichen operatoren
+            } else {
+                container.innerHTML = container.innerHTML.slice(0,-1);
+            }
+        
+        }
+
+    </script>
+</head>
+
+<body>
+    <!-- 
+        html: welche elemente?
+        css: wie soll es aussehen?
+        js: welche logic?
+
+        extension: liveserver
+
+        alt: mehrere Zeilen gleichzeitig
+-->
+
+    <div id="resultArea">
+
+    </div>
+
+    <table>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td onclick="deleteLastNumber()" id="deleteNumberButton">Del</td>
+        </tr>
+        <tr>
+            <td onclick="appendNumber(7)">7</td>
+            <td onclick="appendNumber(8)">8</td>
+            <td onclick="appendNumber(9)">9</td>
+            <td onclick="appendNumber(' / ')" class="operators">/</td>
+        </tr>
+        <tr>
+            <td onclick="appendNumber(4)">4</td>
+            <td onclick="appendNumber(5)">5</td>
+            <td onclick="appendNumber(6)">6</td>
+            <td onclick="appendNumber(' * ')" class="operators">x</td>
+        </tr>
+        <tr>
+            <td onclick="appendNumber(1)">1</td>
+            <td onclick="appendNumber(2)">2</td>
+            <td onclick="appendNumber(3)">3</td>
+            <td onclick="appendNumber(' + ')" class="operators">+</td>
+        </tr>
+        <tr>
+            <td onclick="appendNumber(9)">0</td>
+            <td onclick="appendNumber('.')">,</td>
+            <td onclick="calculateResult()" id="resultButton">=</td>
+            <td onclick="appendNumber(' - ')" class="operators">-</td>
+        </tr>
+    </table>
+
+</body>
+
+</html>
